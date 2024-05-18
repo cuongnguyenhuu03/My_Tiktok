@@ -13,11 +13,8 @@ import {
     faMagnifyingGlass,
     faSignOut,
     faSpinner,
-    faUpload,
     faUser,
 } from '@fortawesome/free-solid-svg-icons';
-
-import { faCommentDots } from '@fortawesome/free-regular-svg-icons';
 import Tippy from '@tippyjs/react';
 import HeadlessTippy from '@tippyjs/react/headless';
 import 'tippy.js/dist/tippy.css';
@@ -26,6 +23,8 @@ import { Wrapper as PopperWrapper } from '~/components/Popper';
 import AccountItem from '~/components/AccountItem';
 import Button from '~/components/Button';
 import Menu from '~/components/Popper/Menu';
+import { MessageIcon, UploadIcon } from '~/components/Icons';
+import Image from '~/components/Image';
 
 const cx = classNames.bind(styles);
 
@@ -67,7 +66,7 @@ function Header() {
 
     useEffect(() => {
         setTimeout(() => {
-            setSearchResult([]);
+            setSearchResult([1]);
         }, 0);
     }, []);
 
@@ -140,12 +139,12 @@ function Header() {
                         <>
                             <Tippy delay={(0, 200)} content="upload video" placement="bottom">
                                 <button className={cx('action-btn')}>
-                                    <FontAwesomeIcon icon={faUpload} />
+                                    <UploadIcon />
                                 </button>
                             </Tippy>
 
                             <button className={cx('action-btn')}>
-                                <FontAwesomeIcon icon={faCommentDots} />
+                                <MessageIcon />
                             </button>
                         </>
                     ) : (
@@ -157,10 +156,11 @@ function Header() {
 
                     <Menu items={currentUser ? userMenu : MENU_ITEMS} onChange={handleMenuChange}>
                         {currentUser ? (
-                            <img
+                            <Image
                                 src="https://p16-sign-useast2a.tiktokcdn.com/tos-useast2a-avt-0068-euttp/5a21c02d4c63b302337ea19f635b9581~c5_100x100.jpeg?lk3s=a5d48078&nonce=6306&refresh_token=ed03be575333485ee18b4743f40d5d64&x-expires=1715994000&x-signature=c%2F1bnked8MeiOGpx4nBVSrc4tJM%3D&shp=a5d48078&shcp=81f88b70"
                                 className={cx('user-avatar')}
                                 alt="Nguyen Huu Cuong"
+                                fallback="https://fullstack.edu.vn/static/media/f8-icon.18cd71cfcfa33566a22b.png"
                             />
                         ) : (
                             <button className={cx('more-btn')}>
